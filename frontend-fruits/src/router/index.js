@@ -1,10 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
-import Service from '../views/Service.vue';
+import HomeView from '../views/HomeView.vue';
 
 const routes = [
-  { path: '/', name: 'Home', component: Home },
-  { path: '/service/:service', name: 'Service', component: Service },
+  { 
+    path: '/',
+    name: 'HomeView', 
+    component: HomeView, 
+  },
+  { 
+    path: '/service/:name', 
+    name: 'ServiceView', 
+    component: () => import('@/views/ServiceView.vue'),
+    props: (route) => ({ serviceName: route.params.name }), 
+  },
 ];
 
 const router = createRouter({
