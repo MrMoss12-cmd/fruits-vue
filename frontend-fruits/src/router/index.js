@@ -1,17 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
+import SaludameView from '../views/SaludameView.vue';
 
 const routes = [
-  { 
+  {
     path: '/',
-    name: 'HomeView', 
-    component: HomeView, 
+    name: 'home',
+    component: HomeView,
   },
-  { 
-    path: '/service/:name', 
-    name: 'ServiceView', 
-    component: () => import('@/views/ServiceView.vue'),
-    props: (route) => ({ serviceName: route.params.name }), 
+  {
+    path: '/Saludame',
+    name: 'saludame',
+    component: SaludameView,
   },
 ];
 
