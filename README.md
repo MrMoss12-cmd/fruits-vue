@@ -62,7 +62,7 @@ Before running the project, ensure you have the following installed:
 
 ### Project Structure
 
-   ```plaintext
+   ```bash
     ├── src
     │   ├── components   # Shared Vue components
     │   ├── views        # Application views (HomeView, SaludameView)
