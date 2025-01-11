@@ -71,7 +71,7 @@ Before running the project, ensure you have the following installed:
     │   └── main.js      # Application entry point
     ├── public           # Static files
     └── package.json     # Project dependencies and scripts
-    ```
+   ```
 
 ## GraphQL Queries
 
