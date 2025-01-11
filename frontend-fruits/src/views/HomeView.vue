@@ -2,13 +2,11 @@
   <div>
     <h1>Available Services</h1>
     <ul v-if="!loading && !error">
-      <li
-        v-for="service in services"
-        :key="service"
-        @click="navigateToService(service)"
-        style="cursor: pointer;"
-      >
-        {{ service }}
+      <li 
+        v-for="service in services" :key="service">
+        <button @click="navigateToService(service)">
+          {{ service }}
+        </button>
       </li>
     </ul>
     <p v-else-if="loading">Loading services...</p>
@@ -19,7 +17,9 @@
 <script>
 import { ref, watch } from 'vue';
 import { useQuery } from '@vue/apollo-composable';
-import gql from 'graphql-tag';
+import { useRouter } from 'vue-router'; 
+
+import {gql} from 'graphql-tag';
 
 const GET_MENU = gql`
   query {
@@ -32,8 +32,8 @@ export default {
   setup() {
     const { result, loading, error } = useQuery(GET_MENU);
     const services = ref([]);
+    const router = useRouter(); // Crea una instancia del router
 
-    // Reactively update `services` when the query result changes
     watch(
       () => result.value,
       (newResult) => {
@@ -44,7 +44,11 @@ export default {
     );
 
     const navigateToService = (service) => {
-      window.location.href = `/service/${service}`;
+      if (service === 'Saludame') {
+        router.push('/Saludame');
+      } else {
+        alert(`El servicio ${service} no está disponible actualmente.`);
+      }
     };
 
     return {
@@ -58,5 +62,17 @@ export default {
 </script>
 
 <style>
-/* Opcional: Estilos personalizados */
+/* Opcional: Estilo para los botones */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #0056b3;
+}
 </style>
